@@ -8,16 +8,20 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
         <style>
             :root {
-                --base-color: #484848;
+                --base-color: #48484800;
                 --red-color: #e04f39;
                 --blue-color: #00a5df;
                 --orange-color: #fe8c27;
                 --green-color: #56c271;
                 --white-color: #FFFFFF;
-                --arrow-color: #00a5df;
-                --arrow-hover-color: #0056b3;
+                --arrow-color: #00a5df; /* Valeur par défaut, sera écrasée par JavaScript */
+                --arrow-hover-color: #0056b3; /* Valeur par défaut, sera écrasée par JavaScript */
                 --link-color: #0038a1;
                 --link-hover-color: #000000;
+
+                /* Ajout des variables pour la case du jour */
+                --today-background-color: #007bff; /* Valeur par défaut, sera écrasée par JavaScript */
+                --today-text-color: #FFFFFF;
             }
             * {
                 box-sizing: border-box;
@@ -102,8 +106,8 @@
             }
 
             .today {
-                background-color: #007bff;
-                color: white;
+                background-color: var(--today-background-color);
+                color: var(--today-text-color);
                 border-radius: 50%;
             }
 
@@ -151,6 +155,34 @@
                 <a href="https://liam.assurance-maladie.fr/ng/app/calendar/home" target="_blank">Accéder au calendrier</a>
             </div>
         </div>
+
+        <script>
+            // Liste des couleurs avec leurs variantes de survol
+            const colorList = [
+                { base: '#00a5df', hover: '#0056b3' }, // Bleu
+                { base: '#EF7C10', hover: '#EF7C10' }, // Orange
+                { base: '#56c271', hover: '#3da55a' }, // Vert
+                { base: '#FBC02C', hover: '#FBC02C' }, // Jaune
+                { base: '#833D90', hover: '#833D90' }, // Violet
+                { base: '#E9417A', hover: '#E9417A' }, // Rose
+                { base: '#2A388D', hover: '#2A388D' }, // Bleu foncé
+                { base: '#82C284', hover: '#82C284' }, // Vert clair
+                { base: '#02ACC1', hover: '#02ACC1' }, // Turquoise
+                { base: '#C2185B', hover: '#C2185B' }, // Bordeau
+                { base: '#6D4C42', hover: '#6D4C42' }, // Marron
+                { base: '#E63935', hover: '#E63935' }, // Rouge
+                // Ajoutez d'autres couleurs si désiré
+            ];
+
+            // Sélectionner une couleur aléatoirement
+            const selectedColor = colorList[Math.floor(Math.random() * colorList.length)];
+
+            // Appliquer la couleur aux variables CSS
+            document.documentElement.style.setProperty('--arrow-color', selectedColor.base);
+            document.documentElement.style.setProperty('--arrow-hover-color', selectedColor.hover);
+            document.documentElement.style.setProperty('--today-background-color', selectedColor.base);
+            document.documentElement.style.setProperty('--today-text-color', '#FFFFFF'); // Couleur du texte dans la case du jour
+        </script>
 
         <script>
             // Calendrier JavaScript
